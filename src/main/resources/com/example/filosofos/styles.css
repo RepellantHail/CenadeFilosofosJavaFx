@@ -1,0 +1,26 @@
+/* Estilos comunes para todos los filósofos */
+.text {
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+}
+
+/* Estilos específicos para cada filósofo */
+.philosopher0-text {
+    -fx-fill: #FF0000; /* Rojo */
+}
+
+.philosopher1-text {
+    -fx-fill: #00FF00; /* Verde */
+}
+
+.philosopher2-text {
+    -fx-fill: #0000FF; /* Azul */
+}
+
+.philosopher3-text {
+    -fx-fill: #FF00FF; /* Magenta */
+}
+
+.philosopher4-text {
+    -fx-fill: #FFFF00; /* Amarillo */
+}
