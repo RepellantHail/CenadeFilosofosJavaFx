@@ -24,3 +24,31 @@
 .philosopher4-text {
     -fx-fill: #FFFF00; /* Amarillo */
 }
+
+.root {
+    -fx-background-color: #F2ECE6; /* Color de fondo principal */
+}
+.philosopher-label {
+    -fx-background-color: #F6E3B4; /* Color de fondo del Label del filósofo */
+}
+
+.button {
+    -fx-background-color: #E5D8BF; /* Color de fondo del botón */
+}
+
+.table {
+    -fx-fill: #E2E2E2;
+}
+
+.philosopher-text {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.philosopher-label {
+    -fx-padding: 10px;
+    -fx-background-color: #F5F5F5;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}

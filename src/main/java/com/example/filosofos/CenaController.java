@@ -1,14 +1,25 @@
 package com.example.filosofos;
 
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class CenaController {
     @FXML
+    private StackPane pane;
+    @FXML
     private Label[] philosopherLabels;
-
+    @FXML
+    private Circle table;
     private int philosopherIndex = 0;
     @FXML
     private Label philosopher1Label;
@@ -59,6 +70,20 @@ public class CenaController {
             philosopherLabel.setText(status);
             philosopherLabel.setGraphic(getEmoji(status)); // Agregar emoji como gráfico al Label
             philosopherLabel.getStyleClass().add("philosopher-label");
+
+            Node emojiNode = philosopherLabel.getGraphic();
+            if (status.equals("Thinking")) {
+                breatheAnimation(emojiNode);
+            } else {
+                emojiNode.getTransforms().clear();
+                emojiNode.setOpacity(1.0);
+            }
+
+            if (status.equals("Picked up left fork") || status.equals("Picked up right fork and started eating")) {
+                blinkAnimation(emojiNode);
+            } else {
+                emojiNode.setOpacity(1.0);
+            }
         });
     }
 
@@ -87,22 +112,6 @@ public class CenaController {
         }
     }
 
-    /*private Text getPhilosopherLabel(int philosopherIndex) {
-        switch (philosopherIndex) {
-            case 0:
-                return philosopher1Label;
-            case 1:
-                return philosopher2Label;
-            case 2:
-                return philosopher3Label;
-            case 3:
-                return philosopher4Label;
-            case 4:
-                return philosopher5Label;
-            default:
-                throw new IllegalArgumentException("Invalid philosopher index: " + philosopherIndex);
-        }
-    }*/
 
     @FXML
     protected void startDinner() {
@@ -111,4 +120,27 @@ public class CenaController {
             t.start();
         }
     }
+
+    private void breatheAnimation(Node node) {
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(1), node);
+        scaleTransition.setByX(0.05);
+        scaleTransition.setByY(0.05);
+        scaleTransition.setCycleCount(Animation.INDEFINITE);
+        scaleTransition.setAutoReverse(true);
+        scaleTransition.setInterpolator(Interpolator.EASE_BOTH);
+        scaleTransition.play();
+    }
+
+    private void blinkAnimation(Node node) {
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), node);
+        fadeTransition.setFromValue(1.0);
+        fadeTransition.setToValue(0.2);
+        fadeTransition.setCycleCount(Animation.INDEFINITE);
+        fadeTransition.setAutoReverse(true);
+        fadeTransition.play();
+    }
+
+
+
+
 }
